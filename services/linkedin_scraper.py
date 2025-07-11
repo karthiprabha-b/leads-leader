@@ -8,7 +8,8 @@ def extract_email(text):
 def scrape_linkedin(niche, location, max_results=5):
     leads = []
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        # ✅ Add --no-sandbox for Railway compatibility
+        browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
         page = browser.new_page()
 
         query = f"{niche} in {location} site:linkedin.com"
