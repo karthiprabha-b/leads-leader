@@ -52,3 +52,4 @@ def search_google_places(niche, location, max_results=15):
         })
 
     return leads
+ 
