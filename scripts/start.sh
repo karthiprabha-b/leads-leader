@@ -1,3 +1,34 @@
 #!/bin/bash
-playwright install --with-deps
-gunicorn -b 0.0.0.0:8080 app:app
+
+# Install required dependencies for Playwright
+apt-get update && apt-get install -y \
+    libglib2.0-0 \
+    libnss3 \
+    libnspr4 \
+    libdbus-1-3 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libdrm2 \
+    libatspi2.0-0 \
+    libx11-6 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxext6 \
+    libxfixes3 \
+    libxrandr2 \
+    libgbm1 \
+    libxcb1 \
+    libxkbcommon0 \
+    libpango-1.0-0 \
+    libcairo2 \
+    libasound2
+
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Run Playwright install just in case
+playwright install
+
+# Start the app
+gunicorn app:app --bind 0.0.0.0:8080
