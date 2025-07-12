@@ -1,7 +1,6 @@
 #!/bin/bash
+# Make sure Playwright dependencies are installed
+playwright install chromium
 
-echo "Installing Playwright Chromium..."
-python -m playwright install chromium
-
-echo "Starting Gunicorn server..."
-gunicorn app:app --bind 0.0.0.0:8000
+# Start Gunicorn server
+exec gunicorn -b 0.0.0.0:8080 app:app
