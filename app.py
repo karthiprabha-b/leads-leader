@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = os.getenv("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")
 openai.api_key = OPENAI_API_KEY
 
 # Scraper imports
