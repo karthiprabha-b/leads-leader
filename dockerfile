@@ -1,6 +1,9 @@
 FROM python:3.12-slim
 
-# Set working directory
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+
+# Set work directory
 WORKDIR /app
 
 # Install system dependencies required by Playwright Chromium
@@ -12,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     libasound2 wget curl unzip \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy your files
+# Copy project files
 COPY . .
 
 # Install Python dependencies
@@ -21,7 +24,7 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 # Install Playwright browser
 RUN playwright install chromium
 
-# Make start script executable
+# Make sure start script is executable
 RUN chmod +x scripts/start.sh
 
 # Run the app
