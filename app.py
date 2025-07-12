@@ -1,13 +1,15 @@
+import os
+os.system("playwright install")  # 🔧 Only needed for Replit or first-time setup
+
 from flask import Flask, render_template, request, jsonify, session, send_file
 import openai
 import io
 import csv
-import os
 from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
-OPENAI_API_KEY = os.getenv("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")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")  # ✅ Use .env instead of hardcoded key
 openai.api_key = OPENAI_API_KEY
 
 # Scraper imports
@@ -43,7 +45,6 @@ def index():
             leads = scrape_facebook(niche, location)
 
         session["leads"] = leads
-
     else:
         leads = session.get("leads", [])
 
